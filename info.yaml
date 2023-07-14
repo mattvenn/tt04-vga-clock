@@ -13,7 +13,7 @@ project:
     - tt_vga_clock.v
     - vga_clock.v
     - VgaSyncGen.v
-  top_module:  "tt_vga_clock"      # Put the name of your top module here, must start with "tt_um_". Make it unique by prepending your github username
+  top_module:  "tt_um_vga_clock"      # Put the name of your top module here, must start with "tt_um_". Make it unique by prepending your github username
 
 # How many tiles your design occupies? A single tile is about 167x108 uM.
 # Before changing this, please reach out to us on discord to discuss your design.
