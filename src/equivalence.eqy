@@ -1,0 +1,44 @@
+[options]
+splitnets on
+
+[gold]
+read_verilog -sv button_pulse.v digit.v fontROM.v tt_vga_clock.v vga_clock.v VgaSyncGen.v
+
+[gate]
+exec -- python3 formal_pdk_proc.py primitives.v sky130_fd_sc_hd.v -o formal_pdk.v
+read -sv formal_pdk.v gate_level_netlist.v
+
+[script]
+hierarchy -check -top tt_um_vga_clock
+prep
+memory_map -formal
+
+async2sync
+
+[collect *]
+group *[] \1[]
+
+# Notes from Jannis @ YosysHQ
+#
+# I started with the eqy file for the 7 segment demo design as I figured the changes
+# I did might be relevant to tiny tapeout designs and removed the design
+# specific bind statement. Initially I got three failing partitions and also
+# used the partition .json files to diagnose and fix them as described in the
+# other eqy file:
+
+# Only unused signnal in tt_um_vga_clock.vga_clock.font_0.dout.1
+bind vga_clock.vga_0.y_px[]
+
+# Unused in tt_um_vga_clock.vga_clock.digit_0.number.0 among others, but since
+# the previous y signal fixed things I tried this x signal before trying the
+# other signals and it turns out that binding this x signal fixed not only this
+# partition but also the other partition that was failing as well
+bind vga_clock.digit_0.x_block[]
+
+[strategy sat]
+use sat
+depth 5
+
+[strategy pdr]
+use sby
+engine abc pdr -rfi
