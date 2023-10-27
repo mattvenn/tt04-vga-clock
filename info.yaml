@@ -55,14 +55,14 @@ documentation:
     - none
 # A description of what the outputs do
   outputs:
-    - hsync
-    - vsync
-    - r0
-    - r1
-    - g0
-    - g1
-    - b0
-    - b1
+    - R1
+    - G1
+    - B1
+    - VS
+    - R0
+    - G0
+    - B0
+    - HS
 # A description of what the bidirectional I/O pins do
   bidirectional:
     - none
