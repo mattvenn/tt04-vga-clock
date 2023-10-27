@@ -38,7 +38,7 @@ module tt_um_vga_clock (
     // outputs
     .hsync      (hsync),
     .vsync      (vsync),
-    .rrggbb     ({R,G,B}),
+    .rrggbb     ({R,G,B})
     );
 
 endmodule
