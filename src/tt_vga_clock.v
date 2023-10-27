@@ -13,6 +13,21 @@ module tt_um_vga_clock (
     assign uio_out = 8'b0;
     assign uio_oe  = 8'b0;
 
+    wire [1:0] R;
+    wire [1:0] G;
+    wire [1:0] B;
+    wire hsync, vsync;
+
+    // https://tinytapeout.com/specs/pinouts/#common-peripherals
+    assign uo_out[0] = R[1];
+    assign uo_out[1] = G[1];
+    assign uo_out[2] = B[1];
+    assign uo_out[3] = vsync;
+    assign uo_out[4] = R[0];
+    assign uo_out[5] = G[0];
+    assign uo_out[6] = B[0];
+    assign uo_out[7] = hsync;
+
     vga_clock vga_clock (
     .clk        (clk), 
     .reset_n    (rst_n),
@@ -21,9 +36,9 @@ module tt_um_vga_clock (
     .adj_min    (ui_in[1]),
     .adj_sec    (ui_in[2]),
     // outputs
-    .hsync      (uo_out[0]),
-    .vsync      (uo_out[1]),
-    .rrggbb     (uo_out[7:2])
+    .hsync      (hsync),
+    .vsync      (vsync),
+    .rrggbb     ({R,G,B}),
     );
 
 endmodule
