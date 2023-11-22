@@ -47,6 +47,8 @@ set ::env(DECAP_CELL) "\
     sky130_fd_sc_hd__decap_8 \
     sky130_ef_sc_hd__decap_12"
 
+set ::env(RSZ_DONT_TOUCH_RX) "_notouch_"
+
 # clock
 set ::env(RUN_CTS) 1
 # period is in ns, so 20ns == 50mHz

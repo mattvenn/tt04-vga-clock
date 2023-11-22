@@ -13,7 +13,7 @@ module tt_um_vga_clock (
     assign uio_out[7:1] = 7'b0;
     assign uio_oe  = 8'b000_0001;
 
-    sky130_fd_sc_hd__inv_1 inverter (
+    sky130_fd_sc_hd__inv_1 inverter_no_touch_ (
         .A          (ui_in[4]),
         .Y          (uio_out[0])
     );
