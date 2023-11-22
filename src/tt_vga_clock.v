@@ -15,9 +15,7 @@ module tt_um_vga_clock (
 
     sky130_fd_sc_hd__inv_1 inverter (
         .A          (ui_in[4]),
-        .X          (uio_out[0]),
-        .VPWR       (1'b1),
-        .VGND       (1'b0)
+        .Y          (uio_out[0])
     );
 
     wire [1:0] R;
